@@ -3,6 +3,7 @@ import { HeaderButton } from "./components/HeaderButton";
 import { IconHome2 } from '@tabler/icons-react';
 import { IconHeartHandshake } from '@tabler/icons-react';
 import { IconMapPinFilled } from '@tabler/icons-react';
+import { Link } from "react-router-dom";
 
 
 export const Header = () => {
@@ -23,23 +24,31 @@ export const Header = () => {
                 </Typography>
             </Box>
             <Box className='w-full flex flex-col items-center'>
-                <HeaderButton
-                    icon={<IconHome2 size={24} color='#F5F5F5' />}
-                >
-                    Página Inicial
-                </HeaderButton>
+                <Link to='/pagina-inicial'>
+                    <HeaderButton
+                        icon={<IconHome2 size={24} color='#F5F5F5' />}
+                    >
+                        Página Inicial
+                    </HeaderButton>
+                </Link>
+
                 <Box className='mt-[3.1rem]'>
                     <HeaderButton
                         icon={<IconHeartHandshake size={24} color='#F5F5F5' />}
                     >
                         Planos de doação
                     </HeaderButton>
-                    <HeaderButton>
-                        Listagem dos planos
-                    </HeaderButton>
-                    <HeaderButton>
-                        Adicionar plano
-                    </HeaderButton>
+                    <Link to='/listagem-planos'>
+                        <HeaderButton>
+                            Listagem dos planos
+                        </HeaderButton>
+                    </Link>
+                    <Link to='/adicionar-plano'>
+                        <HeaderButton>
+                            Adicionar plano
+                        </HeaderButton>
+                    </Link>
+
                 </Box>
                 <Box className='mt-[3.1rem]'>
                     <HeaderButton
@@ -47,13 +56,18 @@ export const Header = () => {
                     >
                         Unidades
                     </HeaderButton>
-                    <HeaderButton>
-                        
-                        Listagem das unidades
-                    </HeaderButton>
-                    <HeaderButton>
-                        Adicionar unidade
-                    </HeaderButton>
+                    <Link to='/listagem-unidades'>
+                        <HeaderButton>
+
+                            Listagem das unidades
+                        </HeaderButton>
+                    </Link>
+                    <Link to='/adicionar-unidade'>
+                        <HeaderButton>
+                            Adicionar unidade
+                        </HeaderButton>
+                    </Link>
+
                 </Box>
             </Box>
         </header>
