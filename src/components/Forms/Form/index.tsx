@@ -1,13 +1,14 @@
 import { Typography } from "@mui/material";
 import { ReactNode } from "react";
 
-interface FormAddPlanProps {
+
+interface FormProps {
     title: string,
     children: ReactNode;
 }
 
 
-export const FormAddPlan = ({ title, children }: FormAddPlanProps) => {
+export const Form = ({ title, children }: FormProps) => {
 
     return (
         <div className="border-[.5rem] border-[#31CB8A] rounded-xl w-[61.12rem] h-[60.32rem] p-[4.8rem] ">

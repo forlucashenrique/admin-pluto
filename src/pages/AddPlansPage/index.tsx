@@ -1,12 +1,12 @@
 
-import { FormAddPlan } from "../../components/Forms/FormAddPlan"
+import { Form } from "../../components/Forms/Form"
 import { Input } from "../../components/Forms/Input"
 
 export const AddPlansPage = () => {
     return (
         <div className="w-full h-full flex items-center justify-center">
 
-            <FormAddPlan title="Adicionar Plano"> 
+            <Form title="Adicionar Plano"> 
                 <Input
                     label='Link da imagem'
 
@@ -69,7 +69,7 @@ export const AddPlansPage = () => {
                     </button>
                 </div>
 
-            </FormAddPlan>
+            </Form>
         </div>
 
     )
