@@ -9,12 +9,12 @@ interface LayoutProps {
 
 export const Layout = ({ children }: LayoutProps) => {
     return (
-        <Box className='w-screen h-screen grid grid-cols-[295px_1fr]'>
+        <Box className='w-screen h-screen grid grid-cols-[236px_1fr]'>
             <Box className='bg-[#00C172]'>
                 <Header />
             </Box>
 
-            <Box className=' bg-[#F5F5F5]'>
+            <Box className='pl-[3.8rem] pt-[3.8rem] pr-[6.5rem] bg-[#F5F5F5]'>
                 {children}
             </Box>
         </Box>

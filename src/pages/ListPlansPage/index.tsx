@@ -1,6 +1,15 @@
+import { TableSystem } from "../../components/Table"
+import { TitlePageDefault } from "../../components/shared/TitlePageDefault"
 
 export const ListPlansPage = () => {
   return (
-    <div>ListPlansPage</div>
+    <>
+      <TitlePageDefault 
+        title='Listagem dos planos'
+        description='Aqui temos a visualização tabelas dos componentes de planos de doação a serem aplicados no site.'
+      />
+
+      <TableSystem />      
+    </>
   )
 }

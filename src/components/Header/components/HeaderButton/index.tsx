@@ -12,7 +12,7 @@ export const HeaderButton = ({ children, icon}: HeaderButtonProps) => {
         <button
             className={`
                 flex items-center  gap-3  text-[#F5F5F5] font-normal
-                w-[23.5rem] h-[5.2rem] text-[1.6rem] leading-[1.875rem] py-4 pl-6
+                w-[18.8rem] h-[5.2rem] text-[1.28rem] leading-[1.875rem] py-4 pl-6
 
                 ${icon ? 'justify-start' : 'pl-[4.5rem]'}
             `}>
