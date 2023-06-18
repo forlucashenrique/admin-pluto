@@ -1,6 +1,6 @@
 import App from '../App'
 import { createBrowserRouter } from 'react-router-dom'
-import { AddPlansPage, HomePage, ListPlansPage, ListUnitsPage } from '../pages'
+import { AddPlansPage, AddUnitPage, HomePage, ListPlansPage, ListUnitsPage } from '../pages'
 
 export const router = createBrowserRouter([
 
@@ -26,7 +26,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/adicionar-unidade',
-                element: <AddPlansPage />
+                element: <AddUnitPage />
             }
         ]
 

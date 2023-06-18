@@ -12,7 +12,7 @@ export const Header = () => {
             <Box className='w-full h-80 flex flex-col gap-11 justify-center items-center'>
                 <Typography
                     sx={{
-                        fontSize: '5.5rem',
+                        fontSize: '4.4rem',
                         color: '#f5f5f5',
                         fontFamily: 'Secular One',
                         fontWeight: 400,
