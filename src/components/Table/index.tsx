@@ -1,6 +1,8 @@
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material"
 import DeleteIcon from '@mui/icons-material/Delete';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
+import { IPlan } from "../../types/IPlan";
+import { ColorItem } from "../ColorItem";
 
 function createData(
     imagemCard: string,
@@ -44,7 +46,12 @@ const textRowStyle = {
 
 }
 
-export const TableSystem = () => {
+interface Data {
+    plans: IPlan[]
+}
+
+
+export const TableSystem = ({ plans }: Data) => {
     return (
         <TableContainer>
             <Table>
@@ -70,20 +77,26 @@ export const TableSystem = () => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.map((row) => (
+                    {plans.map((plan) => (
                         <TableRow
-                            key={row.imagemCard}
+                            key={plan.id}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 }, borderColor: '#00C172' }}
                         >
                             <TableCell sx={textRowStyle}>
-                                {row.imagemCard}
+                                <img className="w-[12rem] height=[10rem]" src={plan.cardImage} alt="" />
                             </TableCell>
-                            <TableCell sx={textRowStyle}>{row.tituloCard}</TableCell>
-                            <TableCell sx={textRowStyle}>{row.corTitulo}</TableCell>
-                            <TableCell sx={textRowStyle}>{row.valorPlano}</TableCell>
-                            <TableCell sx={textRowStyle}>{row.corBotao}</TableCell>
-                            <TableCell sx={textRowStyle}>{row.corTextoBotao}</TableCell>
-                            <TableCell sx={textRowStyle}>{row.corIconeBotao}</TableCell>
+                            <TableCell sx={textRowStyle}>{plan.titleCard}</TableCell>
+                            <TableCell sx={textRowStyle}>
+                                <ColorItem
+                                    color={plan.titleColor}
+                                >
+                                    {plan.titleColor.toUpperCase()}
+                                </ColorItem>
+                            </TableCell>
+                            <TableCell sx={textRowStyle}>{plan.planValue}</TableCell>
+                            <TableCell sx={textRowStyle}>{plan.buttonColor}</TableCell>
+                            <TableCell sx={textRowStyle}>{plan.textButtonColor}</TableCell>
+                            <TableCell sx={textRowStyle}>{plan.iconButtonColor}</TableCell>
                             <TableCell sx={textRowStyle}>
                                 <ModeEditIcon
                                     sx={{
