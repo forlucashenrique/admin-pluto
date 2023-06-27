@@ -1,5 +1,5 @@
 export interface IPlan {
-    id?: string;
+    id?: number;
     cardImage: string;
     titleCard: string;
     titleColor: string;

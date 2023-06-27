@@ -1,10 +1,13 @@
 
 import { Form } from "../../components/Forms/Form"
 import { Input } from "../../components/Forms/Input"
-import {useForm, SubmitHandler} from 'react-hook-form'
-import { createPlan } from "../../services/planServices"
+import { useForm, SubmitHandler } from 'react-hook-form'
+import { createPlan, updatePlan } from "../../services/planServices"
+import { IPlan } from "../../types/IPlan";
+import { useNavigate } from "react-router-dom";
 
 interface FormInput {
+    id?: number;
     cardImage: string;
     titleCard: string;
     titleColor: string;
@@ -12,34 +15,44 @@ interface FormInput {
     buttonColor: string;
     textButtonColor: string;
     iconButtonColor: string;
+}
+
+interface FormProps {
+    plan?: IPlan;
 
 }
 
-export const AddPlansPage = () => {
-    const {register, handleSubmit} = useForm<FormInput>({
-        defaultValues: {
-            cardImage: '',
-            titleCard: '',
-            titleColor: '',
-            planValue: '',
-            buttonColor: '',
-            textButtonColor: '',
-            iconButtonColor: '',
-        }
+export const AddPlansPage = ({ plan }: FormProps) => {
+
+    const navigate = useNavigate();
+
+    const initialValues = plan || {
+        cardImage: '',
+        titleCard: '',
+        titleColor: '',
+        planValue: '',
+        buttonColor: '',
+        textButtonColor: '',
+        iconButtonColor: '',
+    }
+
+    const { register, handleSubmit, reset } = useForm<FormInput>({
+        defaultValues: initialValues
     })
 
     const onSubmit: SubmitHandler<FormInput> = async (data) => {
-        console.log(data);
-        
-        const newPlan = await createPlan(data);
-        console.log(newPlan);
-        
+        if (plan) {
+            await updatePlan(data);
+            window.location.reload();
+        } else {
+            await createPlan(data);
+        }
     }
 
     return (
         <div className="w-full h-full flex items-center justify-center">
 
-            <Form title="Adicionar Plano" handleOnSubmit={handleSubmit(onSubmit)}> 
+            <Form title="Adicionar Plano" handleOnSubmit={handleSubmit(onSubmit)}>
                 <Input
                     name="cardImage"
                     register={register}
@@ -89,7 +102,7 @@ export const AddPlansPage = () => {
 
                     />
 
-                    <Input 
+                    <Input
                         name="iconButtonColor"
                         register={register}
                         label="Cor do ícone do botão"
@@ -102,12 +115,16 @@ export const AddPlansPage = () => {
                         text-[#F6F6E9] font-700 text-[1.12rem] leading-3 shadow-sm
                          
                         `
-                    }>
+
+                    }
+                        onClick={() => reset()}
+                    >
+
                         LIMPAR
                     </button>
-                    <button 
-                    type="submit"
-                    className={`
+                    <button
+                        type="submit"
+                        className={`
                         w-[6.8rem] h-[3.52rem] rounded bg-[#00C172] p-[0.4rem]
                         text-[#F6F6E9] font-700 text-[1.12rem] leading-3 shadow-sm
                          

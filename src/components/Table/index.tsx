@@ -4,23 +4,7 @@ import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import { IPlan } from "../../types/IPlan";
 import { ColorItem } from "../ColorItem";
 
-function createData(
-    imagemCard: string,
-    tituloCard: string,
-    corTitulo: string,
-    valorPlano: string,
-    corBotao: string,
-    corTextoBotao: string,
-    corIconeBotao: string,
-) {
-    return { imagemCard, tituloCard, corTitulo, valorPlano, corBotao, corTextoBotao, corIconeBotao };
-}
 
-const rows = [
-    createData('', 'Quatro dias de água tratada para uma criança.', '#FFFFFF', 'R$50,00', '#F8475E', '#FFFFFF', '#FFFFFF'),
-    createData('', 'Quatro dias de água tratada para uma criança.', '#FFFFFF', 'R$50,00', '#F8475E', '#FFFFFF', '#FFFFFF'),
-    createData('', 'Quatro dias de água tratada para uma criança.', '#FFFFFF', 'R$50,00', '#F8475E', '#FFFFFF', '#FFFFFF'),
-];
 
 const titleColumnStyle = {
     width: '1.6rem',
@@ -47,11 +31,13 @@ const textRowStyle = {
 }
 
 interface Data {
-    plans: IPlan[]
+    plans: IPlan[],
+    handleOnDelete: (id: number) => void;
+    handleOnEdit: (id: number) => void;
 }
 
 
-export const TableSystem = ({ plans }: Data) => {
+export const TableSystem = ({ plans, handleOnDelete, handleOnEdit}: Data) => {
     return (
         <TableContainer>
             <Table>
@@ -94,21 +80,45 @@ export const TableSystem = ({ plans }: Data) => {
                                 </ColorItem>
                             </TableCell>
                             <TableCell sx={textRowStyle}>{plan.planValue}</TableCell>
-                            <TableCell sx={textRowStyle}>{plan.buttonColor}</TableCell>
-                            <TableCell sx={textRowStyle}>{plan.textButtonColor}</TableCell>
-                            <TableCell sx={textRowStyle}>{plan.iconButtonColor}</TableCell>
+                            <TableCell sx={textRowStyle}>
+                                <ColorItem
+                                    color={plan.buttonColor}
+                                >
+                                    {plan.buttonColor}
+                                </ColorItem>
+                            </TableCell>
+                            <TableCell sx={textRowStyle}>
+                                <ColorItem
+                                    color={plan.textButtonColor}
+                                >
+                                    {plan.textButtonColor}
+                                </ColorItem>
+                            </TableCell>
+                            <TableCell sx={textRowStyle}>
+                                <ColorItem
+                                    color={plan.iconButtonColor}
+                                >
+                                    {plan.iconButtonColor}
+                                </ColorItem>
+                            </TableCell>
                             <TableCell sx={textRowStyle}>
                                 <ModeEditIcon
                                     sx={{
                                         marginRight: '1rem',
                                         fontSize: '2rem',
+                                        cursor: 'pointer',
                                     }}
+                                    onClick={() => handleOnEdit(plan.id as number)}
                                 />
                                 <DeleteIcon
                                     sx={{
                                         marginRight: '1rem',
                                         fontSize: '2rem',
+                                        cursor: 'pointer',
+
                                     }}
+
+                                    onClick={() => handleOnDelete(plan.id as number)}
                                 />
                             </TableCell>
                         </TableRow>

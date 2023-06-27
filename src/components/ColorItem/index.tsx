@@ -13,7 +13,7 @@ export const ColorItem = ({ color, children }: ColorItem) => {
         <div className='flex gap-2 items-center'>
             <span
                 style={{
-                    backgroundColor: color,
+                    backgroundColor: `${color}`,
                 }}
                 className="w-[2.4rem] h-[2.4rem] rounded-full  flex items-center justify-center shadow-md"
             >
