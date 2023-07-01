@@ -13,7 +13,7 @@ export const HomePage = () => {
         <>
             <TitlePageDefault
 
-                title='Olá, seja bem vindo!'
+                title='Olá, seja bem-vindo!'
                 description='A partir desse sistema você consegue gerenciar informações a serem exibidas no site do seu projeto. Dê uma olhada em alguns dados gerenciais que coletamos .'
             />
 

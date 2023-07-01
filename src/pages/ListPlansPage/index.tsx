@@ -1,5 +1,5 @@
 
-import { TableSystem } from "../../components/Table"
+import { TablePlans } from "../../components/TablePlans"
 import { TitlePageDefault } from "../../components/shared/TitlePageDefault"
 import { getPlans, deletePlan, updatePlan, getPlan } from "../../services/planServices"
 import { useEffect, useState } from "react"
@@ -49,7 +49,6 @@ export const ListPlansPage = () => {
         isEdit ? (
           <AddPlansPage
             plan={plan}
-            
           />
         ) : (
           <>
@@ -57,7 +56,8 @@ export const ListPlansPage = () => {
               title='Listagem dos planos'
               description='Aqui temos a visualização tabelas dos componentes de planos de doação a serem aplicados no site.'
             />
-            <TableSystem
+            <TablePlans
+              
               plans={data.length > 0 ? data : []}
               handleOnDelete={handleOnDelete}
               handleOnEdit={handleOnEdit}

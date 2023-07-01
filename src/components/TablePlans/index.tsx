@@ -5,7 +5,6 @@ import { IPlan } from "../../types/IPlan";
 import { ColorItem } from "../ColorItem";
 
 
-
 const titleColumnStyle = {
     width: '1.6rem',
     borderColor: '#00C172',
@@ -25,7 +24,6 @@ const textRowStyle = {
     color: '#545454',
     textAlign: 'left',
     align: 'center',
-
     '&:last-child': { textAlign: 'center' },
 
 }
@@ -34,10 +32,11 @@ interface Data {
     plans: IPlan[],
     handleOnDelete: (id: number) => void;
     handleOnEdit: (id: number) => void;
+    
 }
 
 
-export const TableSystem = ({ plans, handleOnDelete, handleOnEdit}: Data) => {
+export const TablePlans = ({ plans, handleOnDelete, handleOnEdit}: Data) => {
     return (
         <TableContainer>
             <Table>
@@ -115,7 +114,6 @@ export const TableSystem = ({ plans, handleOnDelete, handleOnEdit}: Data) => {
                                         marginRight: '1rem',
                                         fontSize: '2rem',
                                         cursor: 'pointer',
-
                                     }}
 
                                     onClick={() => handleOnDelete(plan.id as number)}

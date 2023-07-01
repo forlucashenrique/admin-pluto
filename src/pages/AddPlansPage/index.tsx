@@ -6,20 +6,11 @@ import { createPlan, updatePlan } from "../../services/planServices"
 import { IPlan } from "../../types/IPlan";
 import { useNavigate } from "react-router-dom";
 
-interface FormInput {
-    id?: number;
-    cardImage: string;
-    titleCard: string;
-    titleColor: string;
-    planValue: string;
-    buttonColor: string;
-    textButtonColor: string;
-    iconButtonColor: string;
-}
+
+
 
 interface FormProps {
     plan?: IPlan;
-
 }
 
 export const AddPlansPage = ({ plan }: FormProps) => {
@@ -36,11 +27,11 @@ export const AddPlansPage = ({ plan }: FormProps) => {
         iconButtonColor: '',
     }
 
-    const { register, handleSubmit, reset } = useForm<FormInput>({
+    const { register, handleSubmit, reset } = useForm<IPlan>({
         defaultValues: initialValues
     })
 
-    const onSubmit: SubmitHandler<FormInput> = async (data) => {
+    const onSubmit: SubmitHandler<IPlan> = async (data) => {
         if (plan) {
             await updatePlan(data);
             window.location.reload();
