@@ -1,24 +1,9 @@
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material"
 import DeleteIcon from '@mui/icons-material/Delete';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
+import { IPlan } from "../../types/IPlan";
+import { ColorItem } from "../ColorItem";
 
-function createData(
-    imagemCard: string,
-    tituloCard: string,
-    corTitulo: string,
-    valorPlano: string,
-    corBotao: string,
-    corTextoBotao: string,
-    corIconeBotao: string,
-) {
-    return { imagemCard, tituloCard, corTitulo, valorPlano, corBotao, corTextoBotao, corIconeBotao };
-}
-
-const rows = [
-    createData('', 'Quatro dias de água tratada para uma criança.', '#FFFFFF', 'R$50,00', '#F8475E', '#FFFFFF', '#FFFFFF'),
-    createData('', 'Quatro dias de água tratada para uma criança.', '#FFFFFF', 'R$50,00', '#F8475E', '#FFFFFF', '#FFFFFF'),
-    createData('', 'Quatro dias de água tratada para uma criança.', '#FFFFFF', 'R$50,00', '#F8475E', '#FFFFFF', '#FFFFFF'),
-];
 
 const titleColumnStyle = {
     width: '1.6rem',
@@ -39,12 +24,19 @@ const textRowStyle = {
     color: '#545454',
     textAlign: 'left',
     align: 'center',
-
     '&:last-child': { textAlign: 'center' },
 
 }
 
-export const TableSystem = () => {
+interface Data {
+    plans: IPlan[],
+    handleOnDelete: (id: number) => void;
+    handleOnEdit: (id: number) => void;
+    
+}
+
+
+export const TablePlans = ({ plans, handleOnDelete, handleOnEdit}: Data) => {
     return (
         <TableContainer>
             <Table>
@@ -70,32 +62,61 @@ export const TableSystem = () => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.map((row) => (
+                    {plans.map((plan) => (
                         <TableRow
-                            key={row.imagemCard}
+                            key={plan.id}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 }, borderColor: '#00C172' }}
                         >
                             <TableCell sx={textRowStyle}>
-                                {row.imagemCard}
+                                <img className="w-[12rem] height=[10rem]" src={plan.cardImage} alt="" />
                             </TableCell>
-                            <TableCell sx={textRowStyle}>{row.tituloCard}</TableCell>
-                            <TableCell sx={textRowStyle}>{row.corTitulo}</TableCell>
-                            <TableCell sx={textRowStyle}>{row.valorPlano}</TableCell>
-                            <TableCell sx={textRowStyle}>{row.corBotao}</TableCell>
-                            <TableCell sx={textRowStyle}>{row.corTextoBotao}</TableCell>
-                            <TableCell sx={textRowStyle}>{row.corIconeBotao}</TableCell>
+                            <TableCell sx={textRowStyle}>{plan.titleCard}</TableCell>
+                            <TableCell sx={textRowStyle}>
+                                <ColorItem
+                                    color={plan.titleColor}
+                                >
+                                    {plan.titleColor.toUpperCase()}
+                                </ColorItem>
+                            </TableCell>
+                            <TableCell sx={textRowStyle}>{plan.planValue}</TableCell>
+                            <TableCell sx={textRowStyle}>
+                                <ColorItem
+                                    color={plan.buttonColor}
+                                >
+                                    {plan.buttonColor}
+                                </ColorItem>
+                            </TableCell>
+                            <TableCell sx={textRowStyle}>
+                                <ColorItem
+                                    color={plan.textButtonColor}
+                                >
+                                    {plan.textButtonColor}
+                                </ColorItem>
+                            </TableCell>
+                            <TableCell sx={textRowStyle}>
+                                <ColorItem
+                                    color={plan.iconButtonColor}
+                                >
+                                    {plan.iconButtonColor}
+                                </ColorItem>
+                            </TableCell>
                             <TableCell sx={textRowStyle}>
                                 <ModeEditIcon
                                     sx={{
                                         marginRight: '1rem',
                                         fontSize: '2rem',
+                                        cursor: 'pointer',
                                     }}
+                                    onClick={() => handleOnEdit(plan.id as number)}
                                 />
                                 <DeleteIcon
                                     sx={{
                                         marginRight: '1rem',
                                         fontSize: '2rem',
+                                        cursor: 'pointer',
                                     }}
+
+                                    onClick={() => handleOnDelete(plan.id as number)}
                                 />
                             </TableCell>
                         </TableRow>

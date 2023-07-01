@@ -1,12 +1,16 @@
+import { UseFormRegister } from "react-hook-form";
+
 interface InputProps {
     label: string;
     width?: string;
     classNameLabel?: string;
     classNameInput?: string;
+    name: string;
+    register: UseFormRegister<any>;
 
 }
 
-export const Input = ({ label, width = '', classNameLabel, classNameInput }: InputProps) => {
+export const Input = ({ label, name, register, width = '', classNameLabel, classNameInput }: InputProps) => {
     return (
         <label className={`flex flex-col 
         ${classNameLabel}
@@ -22,7 +26,7 @@ export const Input = ({ label, width = '', classNameLabel, classNameInput }: Inp
                 {label}
             </span>
             <input
-
+                {...register(name)}
                 type="text"
                 className={`h-[3.52rem] bg-[#F9F9F9] border-[#D9D9D9] border-[0.1rem] outline-none rounded p-[1rem] text-[1.28rem] leading-6 font-400 w-full
                 ${classNameInput}

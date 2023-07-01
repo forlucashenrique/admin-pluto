@@ -5,10 +5,11 @@ import { ReactNode } from "react";
 interface FormProps {
     title: string,
     children: ReactNode;
+    handleOnSubmit: () => void
 }
 
 
-export const Form = ({ title, children }: FormProps) => {
+export const Form = ({ title, children, handleOnSubmit }: FormProps) => {
 
     return (
         <div className="border-[.5rem] border-[#31CB8A] rounded-xl w-[61.12rem] h-[60.32rem] p-[4.8rem] ">
@@ -25,7 +26,7 @@ export const Form = ({ title, children }: FormProps) => {
             >
                 {title}
             </Typography>
-            <form className="mt-[3rem]">
+            <form className="mt-[3rem]" onSubmit={handleOnSubmit}>
                 {children}
             </form>
         </div>
