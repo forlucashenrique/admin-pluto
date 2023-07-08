@@ -3,7 +3,7 @@ export interface IPlan {
     cardImage: string;
     titleCard: string;
     titleColor: string;
-    planValue: string;
+    planValue: number;
     buttonColor: string;
     textButtonColor: string;
     iconButtonColor: string;

@@ -12,7 +12,7 @@ interface FormProps {
 export const Form = ({ title, children, handleOnSubmit }: FormProps) => {
 
     return (
-        <div className="border-[.5rem] border-[#31CB8A] rounded-xl w-[61.12rem] h-[60.32rem] p-[4.8rem] ">
+        <div className="border-[.5rem] border-[#31CB8A] rounded-xl w-[61.12rem]  p-[4.8rem] ">
             <Typography
                 component='span'
                 sx={{

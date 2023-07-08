@@ -3,8 +3,21 @@ import { useForm, SubmitHandler } from "react-hook-form"
 import { Form } from "../../components/Forms/Form"
 import { Input } from "../../components/Forms/Input"
 import { IUnit } from "../../types/IUnit"
+import { createUnit, updateUnit  } from "../../services/unitServices";
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from "yup";
 
-import { createUnit, updateUnit } from "../../services/unitServices"
+const schema = yup.object({
+  name: yup.string().required('Campo obrigatório'),
+  address: yup.string().required('Campo obrigatório'),
+  cityState: yup.string().required('Campo obrigatório'),
+  owner: yup.string().required('Campo obrigatório'),
+  ownerEmail: yup.string().required('Campo obrigatório'),
+  titleColor: yup.string().required('Campo obrigatório'),
+  bodyTextColor: yup.string().required('Campo obrigatório'),
+
+
+}).required();
 
 interface FormProps {
   unit?: IUnit;
@@ -23,13 +36,13 @@ export const AddUnitPage = ({ unit }: FormProps) => {
     bodyTextColor: '',
   }
 
-  const { register, handleSubmit, reset } = useForm<IUnit>({
-    defaultValues: initialValues
+  const { register, handleSubmit, reset, formState: { errors } } = useForm<IUnit>({
+    defaultValues: initialValues,
+    resolver: yupResolver(schema)
   })
 
   const onSubmit: SubmitHandler<IUnit> = async (data) => {
     if (unit) {
-
       await updateUnit(data);
       window.location.reload();
     } else {
@@ -43,12 +56,14 @@ export const AddUnitPage = ({ unit }: FormProps) => {
 
       <Form title="Adicionar Unidade" handleOnSubmit={handleSubmit(onSubmit)}>
         <Input
+          errors={errors}
           name="name"
           register={register}
           label='Nome da unidade'
         />
         <label className="flex gap-[3rem] mt-[1.5rem] w-full ">
           <Input
+            errors={errors}
             name="address"
             register={register}
             label='Endereço'
@@ -59,6 +74,7 @@ export const AddUnitPage = ({ unit }: FormProps) => {
         <label className='flex gap-[3rem] mt-[1.5rem]'>
 
           <Input
+            errors={errors}
             name='cityState'
             register={register}
             label='Cidade - Estado'
@@ -66,6 +82,7 @@ export const AddUnitPage = ({ unit }: FormProps) => {
           />
 
           <Input
+            errors={errors}
             name='owner'
             register={register}
             label='Responsável'
@@ -76,6 +93,8 @@ export const AddUnitPage = ({ unit }: FormProps) => {
 
         <label className='flex gap-[3rem] w-full mt-[1.5rem]'>
           <Input
+
+            errors={errors}
             name="ownerEmail"
             register={register}
             label="Email do responsável"
@@ -87,6 +106,7 @@ export const AddUnitPage = ({ unit }: FormProps) => {
         <label className='flex gap-[3rem] mt-[1.5rem]'>
 
           <Input
+            errors={errors}
             name="titleColor"
             register={register}
             label='Cor dos títulos'
@@ -94,6 +114,7 @@ export const AddUnitPage = ({ unit }: FormProps) => {
           />
 
           <Input
+            errors={errors}
             name="bodyTextColor"
             register={register}
             label='Cor do corpo do texto'

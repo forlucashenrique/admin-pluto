@@ -24,7 +24,7 @@ export const Header = () => {
                 </Typography>
             </Box>
             <Box className='w-full flex flex-col items-center'>
-                <Link to='/pagina-inicial'>
+                <Link to='/'>
                     <HeaderButton
                         icon={<IconHome2 size={24} color='#F5F5F5' />}
                     >

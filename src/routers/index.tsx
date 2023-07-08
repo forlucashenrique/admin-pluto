@@ -1,6 +1,7 @@
 import App from '../App'
 import { createBrowserRouter } from 'react-router-dom'
 import { AddPlansPage, AddUnitPage, HomePage, ListPlansPage, ListUnitsPage } from '../pages'
+import { Login } from '../pages/Login'
 
 export const router = createBrowserRouter([
 
@@ -9,7 +10,7 @@ export const router = createBrowserRouter([
         element: <App />,
         children: [
             {
-                path: '/pagina-inicial',
+                path: '/',
                 element: <HomePage />
             },
             {
@@ -30,6 +31,11 @@ export const router = createBrowserRouter([
             }
         ]
 
+    },
+
+    {
+        path: '/login',
+        element: <Login/>
     },
 
 
