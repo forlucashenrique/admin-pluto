@@ -10,18 +10,21 @@ export const Header = () => {
     return (
         <header>
             <Box className='w-full h-80 flex flex-col gap-11 justify-center items-center'>
-                <Typography
-                    sx={{
-                        fontSize: '4.4rem',
-                        color: '#f5f5f5',
-                        fontFamily: 'Secular One',
-                        fontWeight: 400,
-                        lineHeight: '80px',
+                <Link to='/'>
+                    <Typography
+                        sx={{
+                            fontSize: '4.4rem',
+                            color: '#f5f5f5',
+                            fontFamily: 'Secular One',
+                            fontWeight: 400,
+                            lineHeight: '80px',
 
-                    }}
-                    component='h1'>
-                    pluto
-                </Typography>
+                        }}
+                        component='h1'>
+                        pluto
+                    </Typography>
+                </Link>
+
             </Box>
             <Box className='w-full flex flex-col items-center'>
                 <Link to='/'>

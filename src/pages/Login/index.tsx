@@ -25,8 +25,8 @@ export const Login = () => {
         try {
             const user = await loginService(data);
             login(user);
-            navigate('/pagina-inicial');
-            console.log(data)
+            navigate('/');
+
         } catch (error) {
             console.log(error)
         }
@@ -118,6 +118,7 @@ export const Login = () => {
                         />
                         <Input
                             label="Senha"
+                            type="password"
                             name="password"
                             errors={errors}
                             register={register}
@@ -162,3 +163,15 @@ export const Login = () => {
         </Box>
     )
 }
+
+/* import "./styles.css";
+import React from "react";
+import { BarChart, Bar, XAxis, YAxis, ReferenceLine } from "recharts";
+
+
+
+export default function App() {
+  return (
+    
+  );
+} */
